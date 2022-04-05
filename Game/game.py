@@ -34,7 +34,7 @@ bg_img = pygame.image.load('/Users/mitchellbennett/sei/unit4/Project4/Sprites/MM
 bg_img = pygame.transform.scale(bg_img,(SCREEN_WIDTH,SCREEN_HEIGHT)) 
 
 class Enemy(pygame.sprite.Sprite):
-      def __init__(self):
+    def __init__(self):
         super().__init__()
         self.sprites = []
         self.is_moving = False
@@ -61,3 +61,29 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (600,400)
         self.health = 5
+        
+    def animate(self):
+        self.is_moving = True
+
+    def move(self):
+        now = pygame.time.get_ticks()
+        if now - self.last_update >= self.update_delay:
+            self.last_update = now
+            action = random.randint(0,4)
+            if action == 0:
+                if self.rect.top > 260:
+                    self.animate()
+                    self.rect.move_ip(0,-90)
+            elif action == 1:
+                if self.rect.top < 440:
+                    self.animate()
+                    self.rect.move_ip(0,90)
+            elif action == 2:
+                if self.rect.right > 515:
+                    self.animate()
+                    self.rect.move_ip(-135,0)
+            elif action == 3:
+                if self.rect.right < 785:
+                    self.animate()
+                    self.rect.move_ip(135,0)
+        self.moveAni()
