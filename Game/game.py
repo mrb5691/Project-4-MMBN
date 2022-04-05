@@ -190,6 +190,19 @@ class Player(pygame.sprite.Sprite):
         self.moveAni()
         self.shootAni()
 
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.image = pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-bullet1.png")
+        # self.image.fill((255,0,0))
+        self.rect = self.image.get_rect(center = (pos_x,pos_y))
+
+    def move(self):
+        self.rect.x += 60
+        if self.rect.x >= SCREEN_WIDTH +100:
+            self.kill()
+
+
 #Setting up Sprites        
 P1 = Player()
 E1 = Enemy()
