@@ -253,7 +253,7 @@ while True:
         if E1.health >= 1:
             E1.health -= 1
         elif E1.health < 1:
-            DEAD     
+            event.type = DEAD     
          
     pygame.display.update()
     FramePerSec.tick(FPS)
