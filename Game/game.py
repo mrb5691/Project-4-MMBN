@@ -62,6 +62,9 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.center = (600,400)
         self.health = 5
 
+        self.update_delay = 500
+        self.last_update = pygame.time.get_ticks()
+
     def animate(self):
         self.is_moving = True
     def Sanimate(self):
