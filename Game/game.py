@@ -32,3 +32,32 @@ pygame.display.set_caption("Megaman: Pygame Network")
 
 bg_img = pygame.image.load('/Users/mitchellbennett/sei/unit4/Project4/Sprites/MMBNbattleground.png')
 bg_img = pygame.transform.scale(bg_img,(SCREEN_WIDTH,SCREEN_HEIGHT)) 
+
+class Enemy(pygame.sprite.Sprite):
+      def __init__(self):
+        super().__init__()
+        self.sprites = []
+        self.is_moving = False
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-still1.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-still2.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-still3.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-still4.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-move1.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-move2.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-move3.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-move2.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-move1.png"), (100,100)), True, False))
+        self.sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-still1.png"), (100,100)), True, False))
+        self.shoot_sprites = []
+        self.is_shooting = False
+        self.shoot_sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-still1.png"), (100,100)), True, False))
+        self.shoot_sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-shoot2.png"), (100,100)), True, False))
+        self.shoot_sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-shoot1.png"), (100,100)), True, False))
+        self.shoot_sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-shoot2.png"), (100,100)), True, False))
+        self.shoot_sprites.append(pygame.transform.flip(pygame.transform.scale(pygame.image.load("/Users/mitchellbennett/sei/unit4/Project4/Sprites/Megaman-still1.png"), (100,100)), True, False))
+
+        self.current_sprite = 0
+        self.image = self.sprites[self.current_sprite]
+        self.rect = self.image.get_rect()
+        self.rect.center = (600,400)
+        self.health = 5
