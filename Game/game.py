@@ -64,6 +64,8 @@ class Enemy(pygame.sprite.Sprite):
 
     def animate(self):
         self.is_moving = True
+    def Sanimate(self):
+        self.is_shooting = True 
 
     def moveAni(self):
         if self.is_moving == True:
@@ -72,7 +74,15 @@ class Enemy(pygame.sprite.Sprite):
                 self.current_sprite = 0
                 self.is_moving = False
             self.image = self.sprites[self.current_sprite]
-            
+
+    def shootAni(self):
+        if self.is_shooting == True:
+            self.current_sprite +=1
+            if self.current_sprite >= len(self.shoot_sprites):
+                self.current_sprite = 0
+                self.is_shooting = False
+            self.image = self.shoot_sprites[self.current_sprite]
+
     def move(self):
         now = pygame.time.get_ticks()
         if now - self.last_update >= self.update_delay:
