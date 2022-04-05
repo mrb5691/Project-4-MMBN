@@ -61,10 +61,18 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (600,400)
         self.health = 5
-        
+
     def animate(self):
         self.is_moving = True
 
+    def moveAni(self):
+        if self.is_moving == True:
+            self.current_sprite +=1
+            if self.current_sprite >= len(self.sprites):
+                self.current_sprite = 0
+                self.is_moving = False
+            self.image = self.sprites[self.current_sprite]
+            
     def move(self):
         now = pygame.time.get_ticks()
         if now - self.last_update >= self.update_delay:
