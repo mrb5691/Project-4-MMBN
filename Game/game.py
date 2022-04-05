@@ -204,3 +204,40 @@ bullet_group = pygame.sprite.Group()
  
 #Adding a new User event 
 DEAD = pygame.USEREVENT + 1
+
+#Game Loop
+while True:
+    #Cycles through all events occuring  
+    for event in pygame.event.get():  
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == DEAD:
+            DISPLAYSURF.fill(RED)
+            pygame.display.update()
+            for entity in all_sprites:
+                entity.kill() 
+            time.sleep(2)
+            pygame.quit()
+            sys.exit()        
+    
+    DISPLAYSURF.blit(bg_img,(0,0))
+
+    #Moves and Re-draws all Sprites
+    for entity in all_sprites:
+        DISPLAYSURF.blit(entity.image, entity.rect)
+        textsurface = FONT.render(str(entity.health), True, FONT_COLOR)
+        textrect = textsurface.get_rect()
+        entity.image.blit(textsurface, textrect)
+        entity.move()
+    for bullet in bullet_group:
+        DISPLAYSURF.blit(bullet.image, bullet.rect)
+        bullet.move()
+    if pygame.sprite.spritecollideany(E1, bullet_group):
+        if E1.health >= 1:
+            E1.health -= 1
+        elif E1.health < 1:
+            DEAD     
+         
+    pygame.display.update()
+    FramePerSec.tick(FPS)
