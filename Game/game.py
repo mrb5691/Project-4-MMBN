@@ -189,3 +189,18 @@ class Player(pygame.sprite.Sprite):
                     bullet_group.add(self.shootAni())
         self.moveAni()
         self.shootAni()
+
+#Setting up Sprites        
+P1 = Player()
+E1 = Enemy()
+
+#Creating Sprites Groups
+enemies = pygame.sprite.Group()
+enemies.add(E1)
+all_sprites = pygame.sprite.Group()
+all_sprites.add(P1)
+all_sprites.add(E1)
+bullet_group = pygame.sprite.Group()
+ 
+#Adding a new User event 
+DEAD = pygame.USEREVENT + 1
